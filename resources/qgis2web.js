@@ -10,6 +10,10 @@ var map = new ol.Map({
     })
 });
 
+/* Labels-only layer: renders site name text with decluttering so colliding
+   labels are dropped without hiding the point markers (2026-11-10). */
+map.addLayer(lyr_HoseaSites_1_labels);
+
 //initial view - epsg:3857 coordinates if not "Match project CRS"
 map.getView().fit([3917889.478469, 3735648.262334, 3968909.780859, 4006023.459276], map.getSize());
 
@@ -618,4 +622,4 @@ document.addEventListener('DOMContentLoaded', function() {
     var attributionControl = document.getElementsByClassName('bottom-attribution')[0];
     if (attributionControl) {
         bottomRightContainerDiv.appendChild(attributionControl);
-    }
+	}
