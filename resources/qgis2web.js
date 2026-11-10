@@ -103,7 +103,9 @@ closer.onclick = function() {
 };
 var overlayPopup = new ol.Overlay({
     element: container,
-	autoPan: true
+	positioning: 'bottom-center',
+	offset: [0, -12],
+	autoPan: {animation: {duration: 200}, margin: 24}
 });
 map.addOverlay(overlayPopup)
     
