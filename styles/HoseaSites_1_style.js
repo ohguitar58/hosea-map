@@ -1,3 +1,4 @@
+
 var size = 0;
 var placement = 'point';
 function categories_HoseaSites_1(feature, value, size, resolution, labelText,
@@ -38,9 +39,9 @@ var style_HoseaSites_1 = function(feature, resolution){
     var labelFill = "#172033";
     var bufferColor = "#ffffff";
     var bufferWidth = 3.2;
-    var textAlign = 'left';
-    var offsetX = 10;
-    var offsetY = 3;
+    var textAlign = 'center';
+    var offsetX = 0;
+    var offsetY = 30;
     var overflow = false;
     var repeat = 0;
     var placement = 'point';
