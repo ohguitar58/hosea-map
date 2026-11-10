@@ -1,4 +1,3 @@
-
 var size = 0;
 var placement = 'point';
 function categories_HoseaSites_1(feature, value, size, resolution, labelText,
@@ -54,4 +53,14 @@ var style_HoseaSites_1 = function(feature, resolution){
                           bufferWidth, placement, textAlign, offsetX, offsetY, overflow, repeat);
 
     return style;
+};
+
+/* Labels-only companion style (added 2026-11-10): same text as the marker
+   style but no circle, so the label layer can declutter colliding text
+   without ever hiding the point markers themselves. */
+var style_HoseaSites_1_labels = function(feature, resolution){
+    var base = style_HoseaSites_1(feature, resolution) || [];
+    return base.map(function(s){
+        return new ol.style.Style({text: s.getText()});
+    });
 };
