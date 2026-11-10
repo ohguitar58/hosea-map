@@ -1,4 +1,3 @@
-
 var wms_layers = [];
 
 
@@ -20,7 +19,7 @@ var jsonSource_HoseaSites_1 = new ol.source.Vector({
 });
 jsonSource_HoseaSites_1.addFeatures(features_HoseaSites_1);
 var lyr_HoseaSites_1 = new ol.layer.Vector({
-                declutter: true,
+                declutter: false,
                 source:jsonSource_HoseaSites_1, 
                 style: style_HoseaSites_1,
                 popuplayertitle: 'Hosea Sites',
@@ -66,3 +65,14 @@ fetch('https://www.arcgis.com/sharing/rest/content/items/1c365daf37a744fbad748b6
 lyr_ChartedTerritory_0.setVisible(true);
 lyr_OpenStreetMap_0.setVisible(false);
 layersList.unshift(lyr_ChartedTerritory_0);
+
+/* Labels-only layer (added 2026-11-10): shares the same source; declutters
+   label text only, so point markers stay visible at every zoom while
+   overlapping labels are dropped. Not in layersList; added to the map in
+   resources/qgis2web.js after map creation, and excluded from popups. */
+var lyr_HoseaSites_1_labels = new ol.layer.Vector({
+                declutter: true,
+                source: jsonSource_HoseaSites_1,
+                style: style_HoseaSites_1_labels,
+                interactive: false
+});
