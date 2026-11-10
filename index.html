@@ -70,6 +70,11 @@
         .ol-overlay-container {
             z-index: 1100;
         }
+        /* Let the OpenLayers overlay container wrap the popup so its
+           bottom-center anchoring applies (absolute children don't size it). */
+        .ol-popup {
+            position: static;
+        }
         #legend {
             position: absolute;
             left: 8px;
@@ -160,7 +165,8 @@
         document.addEventListener('load', function (e) {
             if (e.target && e.target.tagName === 'IMG' && e.target.closest && e.target.closest('#popup-content') &&
                 typeof overlayPopup !== 'undefined' && overlayPopup.getPosition()) {
-                overlayPopup.setPosition(overlayPopup.getPosition());
+                var p = overlayPopup.getPosition();
+                overlayPopup.setPosition([p[0], p[1]]); // fresh array so the change event fires
             }
         }, true);
         </script>
