@@ -7,8 +7,8 @@ function categories_HoseaSites_1(feature, value, size, resolution, labelText,
     switch(valueStr) {
         case 'false':
             return [ new ol.style.Style({
-        image: new ol.style.Circle({radius: 6.0 + size,
-            displacement: [0, 0], stroke: new ol.style.Stroke({color: 'rgba(255,255,255,1.0)', lineDash: null, lineCap: 'butt', lineJoin: 'miter', width: 1.71}), fill: new ol.style.Fill({color: 'rgba(194,65,12,1.0)'})}),
+        image: new ol.style.Circle({radius: 8.0 + size,
+            displacement: [0, 0], stroke: new ol.style.Stroke({color: 'rgba(255,255,255,1.0)', lineDash: null, lineCap: 'butt', lineJoin: 'miter', width: 1.71}), fill: new ol.style.Fill({color: 'rgba(37,99,235,1.0)'})}),
         text: createTextStyle(feature, resolution, labelText, labelFont,
                               labelFill, placement, bufferColor,
                               bufferWidth, textAlign, offsetX, offsetY, overflow, repeat)
@@ -17,8 +17,8 @@ function categories_HoseaSites_1(feature, value, size, resolution, labelText,
 
         case 'true':
             return [ new ol.style.Style({
-        image: new ol.style.Circle({radius: 8.4 + size,
-            displacement: [0, 0], stroke: new ol.style.Stroke({color: 'rgba(124,58,237,1.0)', lineDash: null, lineCap: 'butt', lineJoin: 'miter', width: 3.04}), fill: new ol.style.Fill({color: 'rgba(255,0,0,1.0)'})}),
+        image: new ol.style.Circle({radius: 10.0 + size,
+            displacement: [0, 0], stroke: new ol.style.Stroke({color: 'rgba(30,64,175,1.0)', lineDash: [6, 6], lineCap: 'butt', lineJoin: 'miter', width: 3.04}), fill: new ol.style.Fill({color: 'rgba(191,219,254,1.0)'})}),
         text: createTextStyle(feature, resolution, labelText, labelFont,
                               labelFill, placement, bufferColor,
                               bufferWidth, textAlign, offsetX, offsetY, overflow, repeat)
@@ -34,12 +34,12 @@ var style_HoseaSites_1 = function(feature, resolution){
     
     var labelText = ""; 
     var value = feature.get("proposed_location");
-    var labelFont = "10.4px \'Noto Sans CJK KR\', sans-serif";
+    var labelFont = "14px \'Noto Sans CJK KR\', sans-serif";
     var labelFill = "#172033";
     var bufferColor = "#ffffff";
-    var bufferWidth = 2.7;
+    var bufferWidth = 3.2;
     var textAlign = 'left';
-    var offsetX = 8;
+    var offsetX = 10;
     var offsetY = 3;
     var overflow = false;
     var repeat = 0;
