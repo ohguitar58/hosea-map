@@ -1,3 +1,4 @@
+
 var wms_layers = [];
 
 
@@ -19,7 +20,7 @@ var jsonSource_HoseaSites_1 = new ol.source.Vector({
 });
 jsonSource_HoseaSites_1.addFeatures(features_HoseaSites_1);
 var lyr_HoseaSites_1 = new ol.layer.Vector({
-                declutter: false,
+                declutter: true,
                 source:jsonSource_HoseaSites_1, 
                 style: style_HoseaSites_1,
                 popuplayertitle: 'Hosea Sites',
