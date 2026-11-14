@@ -137,6 +137,12 @@
             background: rgba(191,219,254,1.0);
             border: 3px dashed rgba(30,64,175,1.0);
         }
+        #legend .legend-boundary {
+            width: 22px;
+            height: 0;
+            flex: none;
+            border-top: 3px solid rgba(90,98,108,1.0);
+        }
         @media (max-width: 650px) {
             #legend {
                 font-size: 12px;
@@ -163,6 +169,7 @@
             </div>
             <div id="legend">
                 <div class="legend-title">장소 / Sites</div>
+                <div class="legend-item"><span class="legend-boundary"></span><span>Northern Kingdom of Israel (approximate boundary) / 북이스라엘 왕국(경계 추정)</span></div>
                 <div class="legend-item"><span class="legend-dot confirmed"></span><button type="button" class="legend-site" data-site-name="사마리아 유적 Samaria ruins" title="Click to show this site's popup">사마리아 유적 Samaria ruins</button></div>
                 <div class="legend-item"><span class="legend-dot confirmed"></span><button type="button" class="legend-site" data-site-name="세겜 Shechem (Tell Balata)" title="Click to show this site's popup">세겜 Shechem (Tell Balata)</button></div>
                 <div class="legend-item"><span class="legend-dot proposed"></span><button type="button" class="legend-site" data-site-name="디르사 Tirzah (추정 위치 / proposed site)" title="Click to show this site's popup">디르사 Tirzah (추정 위치 / proposed site)</button></div>

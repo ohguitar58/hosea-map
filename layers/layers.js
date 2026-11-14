@@ -28,8 +28,47 @@ var lyr_HoseaSites_1 = new ol.layer.Vector({
     <img src="styles/legend/HoseaSites_1_0.png" /> Confirmed site / 확인된 장소<br />\
     <img src="styles/legend/HoseaSites_1_1.png" /> Proposed site / 추정 장소<br />' });
 
-lyr_OpenStreetMap_0.setVisible(true);lyr_HoseaSites_1.setVisible(true);
-var layersList = [lyr_OpenStreetMap_0,lyr_HoseaSites_1];
+var json_NorthernKingdom_2 = {
+    "type": "FeatureCollection",
+    "features": [{
+        "type": "Feature",
+        "properties": {"name": "Northern Kingdom of Israel (approximate boundary)"},
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+                [35.56, 33.30], [35.68, 33.30], [35.76, 33.18],
+                [35.84, 33.12], [35.92, 33.03], [36.02, 33.00],
+                [36.10, 32.95], [36.13, 32.80], [36.15, 32.65],
+                [36.20, 32.45], [36.22, 32.25], [36.16, 32.00],
+                [36.10, 31.80], [36.00, 31.65], [35.94, 31.50],
+                [35.85, 31.38], [35.74, 31.32], [35.65, 31.44],
+                [35.58, 31.55], [35.55, 31.68], [35.48, 31.76],
+                [35.42, 31.82], [35.36, 31.86], [35.26, 31.86],
+                [35.18, 31.88], [35.10, 31.94], [35.02, 31.98],
+                [34.90, 32.00], [34.86, 32.05], [34.88, 32.18],
+                [34.90, 32.32], [34.93, 32.47], [34.95, 32.60],
+                [35.00, 32.72], [35.04, 32.84], [35.07, 32.94],
+                [35.14, 33.02], [35.26, 33.09], [35.34, 33.16],
+                [35.46, 33.22], [35.56, 33.30]
+            ]]
+        }
+    }]
+};
+var features_NorthernKingdom_2 = new ol.format.GeoJSON().readFeatures(
+    json_NorthernKingdom_2,
+    {dataProjection: 'EPSG:4326', featureProjection: 'EPSG:3857'}
+);
+var lyr_NorthernKingdom_2 = new ol.layer.Vector({
+    source: new ol.source.Vector({features: features_NorthernKingdom_2}),
+    style: new ol.style.Style({
+        stroke: new ol.style.Stroke({color: 'rgba(90,98,108,1.0)', width: 3})
+    }),
+    interactive: false,
+    title: 'Northern Kingdom of Israel (approximate boundary) / 북이스라엘 왕국(경계 추정)'
+});
+
+lyr_OpenStreetMap_0.setVisible(true);lyr_HoseaSites_1.setVisible(true);lyr_NorthernKingdom_2.setVisible(true);
+var layersList = [lyr_OpenStreetMap_0,lyr_NorthernKingdom_2,lyr_HoseaSites_1];
 lyr_HoseaSites_1.set('fieldAliases', {'name': 'Site / 장소', 'description': 'Description / 설명', 'proposed_location': 'proposed_location', 'photo': 'Photo / 사진', 'photo_status': 'photo_status', 'photo_credit': 'Photo credit / 사진 출처', 'label_text': 'label_text', });
 lyr_HoseaSites_1.set('fieldImages', {'name': '', 'description': '', 'proposed_location': '', 'photo': 'ExternalResource', 'photo_status': '', 'photo_credit': '', 'label_text': '', });
 lyr_HoseaSites_1.set('fieldLabels', {'name': 'header label - always visible', 'description': 'inline label - always visible', 'proposed_location': 'hidden field', 'photo': 'inline label - visible with data', 'photo_status': 'hidden field', 'photo_credit': 'inline label - visible with data', 'label_text': 'hidden field', });
