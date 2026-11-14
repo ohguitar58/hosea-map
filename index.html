@@ -89,6 +89,8 @@
             line-height: 1.5;
             color: #172033;
             max-width: 46vw;
+            max-height: 42vh;
+            overflow-y: auto;
             box-sizing: border-box;
         }
         #legend .legend-title {
@@ -101,6 +103,23 @@
             align-items: center;
             gap: 7px;
             margin-top: 2px;
+        }
+        #legend .legend-site {
+            border: 0;
+            padding: 0;
+            background: transparent;
+            color: inherit;
+            font: inherit;
+            line-height: inherit;
+            text-align: left;
+            cursor: pointer;
+        }
+        #legend .legend-site:hover {
+            text-decoration: underline;
+        }
+        #legend .legend-site:focus-visible {
+            outline: 2px solid #1d4ed8;
+            outline-offset: 2px;
         }
         #legend .legend-dot {
             width: 14px;
@@ -122,6 +141,7 @@
             #legend {
                 font-size: 12px;
                 max-width: 62vw;
+                max-height: 38vh;
                 bottom: 44px;
             }
             #legend .legend-dot {
@@ -133,7 +153,7 @@
             }
         }
         </style>
-        <title>호세아가 알게 된 것 / What Hosea Came to Know</title>
+        <title>호세아 시대의 역사적 장소들 / Historical Places of Hosea's Era</title>
     </head>
     <body>
         <div id="map">
@@ -142,9 +162,15 @@
                 <div id="popup-content"></div>
             </div>
             <div id="legend">
-                <div class="legend-title">범례 / Legend</div>
-                <div class="legend-item"><span class="legend-dot confirmed"></span><span>Confirmed site / 확인된 장소</span></div>
-                <div class="legend-item"><span class="legend-dot proposed"></span><span>Proposed site / 추정 장소</span></div>
+                <div class="legend-title">장소 / Sites</div>
+                <div class="legend-item"><span class="legend-dot confirmed"></span><button type="button" class="legend-site" data-site-name="사마리아 유적 Samaria ruins" title="Click to show this site's popup">사마리아 유적 Samaria ruins</button></div>
+                <div class="legend-item"><span class="legend-dot confirmed"></span><button type="button" class="legend-site" data-site-name="세겜 Shechem (Tell Balata)" title="Click to show this site's popup">세겜 Shechem (Tell Balata)</button></div>
+                <div class="legend-item"><span class="legend-dot proposed"></span><button type="button" class="legend-site" data-site-name="디르사 Tirzah (추정 위치 / proposed site)" title="Click to show this site's popup">디르사 Tirzah (추정 위치 / proposed site)</button></div>
+                <div class="legend-item"><span class="legend-dot confirmed"></span><button type="button" class="legend-site" data-site-name="베델 Bethel (현 베이틴 Baytin)" title="Click to show this site's popup">베델 Bethel (현 베이틴 Baytin)</button></div>
+                <div class="legend-item"><span class="legend-dot confirmed"></span><button type="button" class="legend-site" data-site-name="단 Dan (텔 단 Tel Dan)" title="Click to show this site's popup">단 Dan (텔 단 Tel Dan)</button></div>
+                <div class="legend-item"><span class="legend-dot confirmed"></span><button type="button" class="legend-site" data-site-name="텔 이즈르엘 Tel Jezreel" title="Click to show this site's popup">텔 이즈르엘 Tel Jezreel</button></div>
+                <div class="legend-item"><span class="legend-dot confirmed"></span><button type="button" class="legend-site" data-site-name="예루살렘 Jerusalem" title="Click to show this site's popup">예루살렘 Jerusalem</button></div>
+                <div class="legend-item"><span class="legend-dot confirmed"></span><button type="button" class="legend-site" data-site-name="레바논 산맥 / Mount Lebanon" title="Click to show this site's popup">레바논 산맥 / Mount Lebanon</button></div>
             </div>
         </div>
         <script src="resources/qgis2web_expressions.js"></script>
@@ -159,6 +185,33 @@
         <script src="./resources/Autolinker.min.js"></script>
         <script src="./resources/qgis2web.js"></script>
         <script>
+        document.getElementById('legend').addEventListener('click', function (event) {
+            var button = event.target.closest('button[data-site-name]');
+            if (!button) {
+                return;
+            }
+            event.preventDefault();
+            event.stopPropagation();
+
+            var siteName = button.getAttribute('data-site-name');
+            var feature = jsonSource_HoseaSites_1.getFeatures().find(function (candidate) {
+                return candidate.get('name') === siteName;
+            });
+            if (!feature) {
+                console.error('Could not find map feature for legend entry:', siteName);
+                return;
+            }
+
+            var coordinate = feature.getGeometry().getCoordinates();
+            popupContent = '<ul><li><table><a><b>' +
+                lyr_HoseaSites_1.get('popuplayertitle') + '</b></a>' +
+                createPopupField(feature, feature.getKeys(), lyr_HoseaSites_1) +
+                '</table></li></ul>';
+            popupCoord = coordinate;
+            map.getView().animate({center: coordinate, duration: 300});
+            updatePopup();
+        });
+
         // Photos finish loading after the popup opens and make it taller;
         // re-running the overlay position re-applies autoPan so the popup
         // stays fully inside the viewport.

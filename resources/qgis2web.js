@@ -506,7 +506,7 @@ var Title = new ol.control.Control({
     element: (() => {
         var titleElement = document.createElement('div');
         titleElement.className = 'top-left-title ol-control';
-        titleElement.innerHTML = '<h2 class="project-title">호세아가 알게 된 것 / What Hosea Came to Know</h2>';
+        titleElement.innerHTML = '<h2 class="project-title">호세아 시대의 역사적 장소들 / Historical Places of Hosea&#39;s Era</h2>';
         return titleElement;
     })(),
     target: 'top-left-container'
